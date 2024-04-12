@@ -1,0 +1,20 @@
+credentials:
+  usernames:
+    ddudas:
+      email: david.dudas@borndigital.ai
+      name: David Dudáš
+      password: oP9O9t5IcTFDWzP
+    lweiss:
+      email: Lubomir.Weiss@wolterskluwer.com
+      name: Lubomir Weiss
+      password: TqPLZzX6LitxFWF
+    tmalovec:
+      email: tomas.malovec@borndigital.ai
+      name: David Dudáš
+      password: FsVb85ccOS9WME8            
+cookie:
+  expiry_days: 30
+  key: cCAPZJluy1zH2OH 
+  name: DallAbIIC14UVhq
+pre-authorized:
+  emails:

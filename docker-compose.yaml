@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  server:
+    build: .
+    image: borndigitalaibot/wk-data:v0.0.1
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    platform: linux/amd64      
