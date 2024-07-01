@@ -58,7 +58,7 @@ def main():
     st.sidebar.header("Filters")
     email_filter = st.sidebar.text_input("Email", "")
     date_from = st.sidebar.date_input("From Date", value=datetime.date(2024, 1, 1))
-    date_to = st.sidebar.date_input("To Date", value=pd.to_datetime("today"))
+    date_to = st.sidebar.date_input("To Date", value=pd.to_datetime("today") + pd.Timedelta(days=1))
 
     # Fetch data from the database
     data = fetch_data(email_filter, date_from, date_to)
@@ -95,12 +95,13 @@ def main():
     with col2:
         # Bar chart for evaluation stars
         if not df.empty and 'stars' in df.columns:
-            star_counts = df['stars'].value_counts().reindex(range(6), fill_value=0)
-            fig_stars = px.bar(star_counts, x=star_counts.index, y=star_counts.values, labels={'x': 'Stars', 'y': 'Count'}, title='Distribution of Evaluation Stars')
-            fig_stars.update_layout(xaxis_type='category')
-            st.plotly_chart(fig_stars, use_container_width=True)
+            thumb_counts = df['stars'].value_counts().reindex([0, 1], fill_value=0)
+            fig_thumbs = px.pie(thumb_counts, names=thumb_counts.index, values=thumb_counts.values, 
+                                labels={'0': 'Thumb Down', '1': 'Thumb Up'}, 
+                                title='Distribution of Evaluation Thumbs Up/Down')
+            st.plotly_chart(fig_thumbs, use_container_width=True)
         else:
-            st.write("No evaluations available to display the bar chart.")
+            st.write("No evaluations available to display the pie chart.")
 
     interaction_count = len(df)  # Count the number of rows in the DataFrame
     st.subheader(f"Interaction and Evaluation Details - {interaction_count} Interactions")  # Display count in the subheader
